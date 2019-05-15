@@ -50,6 +50,9 @@ export default new Vuex.Store({
         }
         if (data_type == 'goal') {
           state.goal_lap = data.goal_lap
+          setTimeout(() => {
+            this.$socket.sendObj({data_type: "counter"})
+          }, 3000);
         }
         if (data_type == 'play') {
           state.play = data.status
