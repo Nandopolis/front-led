@@ -41,21 +41,23 @@ export default new Vuex.Store({
           state[data_type].player_2 = data[data_type + '_2']
           timed_states.push(state[data_type])
         }
-        if (data_type == 'win') {
+        else if (data_type == 'win') {
           state.winner.player = data.winner
           timed_states.push(state.winner)
         }
-        if (data_type == 'time') {
+        else if (data_type == 'time') {
           time = data.seconds
         }
-        if (data_type == 'goal') {
+        else if (data_type == 'goal') {
           state.goal_lap = data.goal_lap
+        }
+        else if (data_type == 'play') {
+          state.play = data.status
+        }
+        else if (data_type == 'counter') {
           setTimeout(() => {
             this.$socket.sendObj({data_type: "counter"})
           }, 3000);
-        }
-        if (data_type == 'play') {
-          state.play = data.status
         }
       })
       if (time != null) {
